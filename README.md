@@ -68,7 +68,7 @@ Files included:
 Raw datasets stored inside:
 
 ```
-data/raw/
+data/
 ```
 
 and uploaded to **AWS S3** as part of pipeline raw layer implementation.
@@ -231,7 +231,6 @@ config/
 config_template.py
 
 data/
-raw/
 
 ingestion/
 load_s3_to_mysql.py
