@@ -1,37 +1,57 @@
-# Olist E-Commerce Data Engineering Pipeline
+# 🛒 Olist E-Commerce Data Engineering Pipeline
 
-## Project Overview
+## 📌 Project Overview
 
-This project implements an end-to-end Data Engineering Pipeline using the Brazilian Olist E-Commerce Dataset. The pipeline demonstrates ingestion, cleaning, transformation using Change Data Capture (CDC) logic, warehouse modeling, analytics view creation, and Tableau dashboard visualization.
+This project implements an **End-to-End Data Engineering Pipeline** using the **Brazilian Olist E-Commerce Dataset**.
 
-The objective of this pipeline is to simulate a real-world analytics workflow from raw data ingestion to business intelligence reporting.
+The pipeline demonstrates:
+
+✅ Data ingestion  
+✅ Data cleaning & transformation  
+✅ Change Data Capture (CDC) logic  
+✅ Warehouse modeling  
+✅ Analytics view creation  
+✅ Tableau dashboard visualization  
+
+🎯 **Goal:** Simulate a real-world analytics workflow from raw data ingestion to business intelligence reporting.
 
 ---
 
-## Architecture Pipeline
+## 🏗️ Architecture Pipeline
 
-Data flow architecture:
+### 🔄 Data Flow Architecture
 
-Kaggle Dataset  
-→ AWS S3 (Raw Data Layer)  
-→ Python Ingestion Scripts  
-→ MySQL Staging Tables  
-→ Python Transformation & CDC Processing  
-→ MySQL Target Warehouse Tables  
-→ SQL Analytics Views  
-→ Tableau Dashboards  
+```
+Kaggle Dataset
+    ↓
+AWS S3 (Raw Data Layer)
+    ↓
+Python Ingestion Scripts
+    ↓
+MySQL Staging Tables
+    ↓
+Python Transformation + CDC Processing
+    ↓
+MySQL Target Warehouse Tables
+    ↓
+SQL Analytics Views
+    ↓
+Tableau Dashboards
+```
 
-Architecture diagram available inside:
+📊 Architecture diagram available inside:
 
+```
 architecture/pipeline_architecture.png
+```
 
 ---
 
-## Dataset Source
+## 📂 Dataset Source
 
 Dataset used:
 
-Brazilian Olist E-Commerce Dataset (Kaggle)
+📦 **Brazilian Olist E-Commerce Dataset (Kaggle)**
 
 Files included:
 
@@ -45,27 +65,29 @@ Files included:
 - olist_geolocation_dataset.csv
 - product_category_name_translation.csv
 
-Raw datasets are stored inside:
+Raw datasets stored inside:
 
+```
 data/raw/
+```
 
-and also uploaded to AWS S3 as part of the pipeline raw layer implementation.
+and uploaded to **AWS S3** as part of pipeline raw layer implementation.
 
 ---
 
-## Pipeline Layers
+## 🧱 Pipeline Layers
 
-### 1. Raw Layer (AWS S3)
+### ☁️ 1. Raw Layer (AWS S3)
 
 Stores original CSV datasets without modification.
 
-Acts as the source storage layer for ingestion scripts.
+Acts as the **source storage layer** for ingestion scripts.
 
 ---
 
-### 2. Staging Layer (MySQL)
+### 🗄️ 2. Staging Layer (MySQL)
 
-Data is loaded from AWS S3 into MySQL staging tables using Python ingestion scripts.
+Data loaded from **AWS S3 → MySQL staging tables** using Python ingestion scripts.
 
 Example staging tables:
 
@@ -79,24 +101,24 @@ Example staging tables:
 
 ---
 
-### 3. Transformation Layer (Python + CDC Logic)
+### 🧹 3. Transformation Layer (Python + CDC Logic)
 
 Data cleaning and transformation performed using Python scripts.
 
 Operations performed:
 
-- duplicate removal
-- datatype correction
-- null handling
-- category translation mapping
-- normalization of text columns
-- incremental loading using record hashing (CDC logic)
+✔ Duplicate removal  
+✔ Datatype correction  
+✔ Null handling  
+✔ Category translation mapping  
+✔ Normalization of text columns  
+✔ Incremental loading using record hashing (**CDC logic**)
 
-Outputs stored in analytics-ready warehouse tables.
+Outputs stored in **analytics-ready warehouse tables**
 
 ---
 
-### 4. Target Warehouse Layer (MySQL)
+### 🏢 4. Target Warehouse Layer (MySQL)
 
 Final cleaned warehouse tables:
 
@@ -108,11 +130,11 @@ Final cleaned warehouse tables:
 - reviews_target
 - sellers_target
 
-These tables act as the semantic source for analytics queries.
+These act as the **semantic analytics source layer**
 
 ---
 
-### 5. Analytics Layer (SQL Views)
+### 📊 5. Analytics Layer (SQL Views)
 
 Analytics-ready SQL views created:
 
@@ -121,140 +143,166 @@ Analytics-ready SQL views created:
 - vw_category_performance
 - vw_state_performance
 
-These views perform joins and aggregations required for dashboard reporting.
+Used for:
+
+📈 dashboard joins  
+📉 aggregations  
+📊 KPI computation  
 
 ---
 
-## Dashboards Created (Tableau)
+## 📊 Dashboards Created (Tableau)
 
-Two interactive dashboards were developed using Tableau.
-
-### 1. Sales & Geography Dashboard
-
-Includes:
-
-- Total Revenue KPI
-- Total Orders KPI
-- Total Freight KPI
-- Payment Value KPI
-- Monthly Revenue Trend
-- Monthly Freight Trend
-- Sales Distribution by State
-- Top Cities by Revenue
+Two interactive dashboards developed using Tableau.
 
 ---
 
-### 2. Product Category & Customer Experience Dashboard
+### 📍 1. Sales & Geography Dashboard
 
 Includes:
 
-- Average Customer Rating KPI
-- Total Categories KPI
-- Total Cities KPI
-- Average Order Value KPI
-- Top Categories by Revenue
-- Category-wise Rating Analysis
-- Review Score Distribution
-- Customer Satisfaction Share
+📈 Total Revenue KPI  
+📦 Total Orders KPI  
+🚚 Total Freight KPI  
+💳 Payment Value KPI  
+📅 Monthly Revenue Trend  
+📉 Monthly Freight Trend  
+🗺️ Sales Distribution by State  
+🏙️ Top Cities by Revenue  
 
-Dashboard screenshots available inside:
+Screenshots inside:
 
+```
 dashboards/
+```
 
 ---
 
-## Key Business Insights
+### ⭐ 2. Product Category & Customer Experience Dashboard
 
-Some insights derived from dashboards:
+Includes:
 
-- São Paulo contributes the highest share of revenue
-- Customer satisfaction average rating remains above 4.0
-- Health & Beauty category generates strong revenue contribution
-- Majority of customer ratings fall between 4 and 5 stars
+⭐ Average Customer Rating KPI  
+📦 Total Categories KPI  
+🏙️ Total Cities KPI  
+💰 Average Order Value KPI  
+📊 Top Categories by Revenue  
+📉 Category-wise Rating Analysis  
+📊 Review Score Distribution  
+🙂 Customer Satisfaction Share  
+
+Screenshots inside:
+
+```
+dashboards/
+```
 
 ---
 
-## Technologies Used
+## 📌 Key Business Insights
 
-- AWS S3
-- Python (Pandas, Boto3, SQLAlchemy)
-- MySQL
-- SQL Analytics Views
-- Tableau
+Insights derived from dashboards:
+
+📍 São Paulo contributes the highest share of revenue  
+⭐ Customer satisfaction average rating remains above **4.0**  
+💄 Health & Beauty category generates strong revenue contribution  
+📊 Majority of customer ratings fall between **4–5 stars**
 
 ---
 
-## Project Structure
+## 🛠️ Technologies Used
 
+| Layer | Tools |
+|------|------|
+| Storage | AWS S3 |
+| Processing | Python (Pandas, Boto3, SQLAlchemy) |
+| Database | MySQL |
+| Analytics | SQL Views |
+| Visualization | Tableau |
+
+---
+
+## 📁 Project Structure
+
+```
 olist-data-engineering-pipeline/
 
-config/  
-config_template.py  
+config/
+config_template.py
 
-data/  
-raw/  
+data/
+raw/
 
-ingestion/  
-load_s3_to_mysql.py  
+ingestion/
+load_s3_to_mysql.py
 
-transformation/  
-load_*_target.py  
+transformation/
+load_*_target.py
 
-sql_views/  
-vw_sales_analytics.sql  
-vw_revenue_summary.sql  
-vw_category_performance.sql  
-vw_state_performance.sql  
+sql_views/
+vw_sales_analytics.sql
+vw_revenue_summary.sql
+vw_category_performance.sql
+vw_state_performance.sql
 
-dashboards/  
-dashboard_sales_geo.png  
-dashboard_category_experience.png  
+dashboards/
+dashboard_sales_geo.png
+dashboard_category_experience.png
 
-architecture/  
-pipeline_architecture.png  
+architecture/
+pipeline_architecture.png
 
-README.md  
-requirements.txt  
-.gitignore  
+README.md
+requirements.txt
+.gitignore
+```
 
 ---
 
-## How to Run This Pipeline
+## 🚀 How to Run This Pipeline
 
-Step 1:
+### Step 1️⃣
 
 Upload raw dataset to AWS S3 bucket
 
-Step 2:
+### Step 2️⃣
 
 Configure credentials inside:
 
+```
 config/config.py
+```
 
-Step 3:
+### Step 3️⃣
 
 Run ingestion script:
 
+```
 python ingestion/load_s3_to_mysql.py
+```
 
-Step 4:
+### Step 4️⃣
 
 Run transformation scripts:
 
-python transformation/load_customers_target.py  
-python transformation/load_orders_target.py  
-python transformation/load_products_target.py  
-python transformation/load_reviews_target.py  
-python transformation/load_payments_target.py  
-python transformation/load_sellers_target.py  
+```
+python transformation/load_customers_target.py
+python transformation/load_orders_target.py
+python transformation/load_products_target.py
+python transformation/load_reviews_target.py
+python transformation/load_payments_target.py
+python transformation/load_sellers_target.py
+```
 
-Step 5:
+### Step 5️⃣
 
 Execute SQL view files inside MySQL:
 
+```
 sql_views/
+```
 
-Step 6:
+### Step 6️⃣
 
 Connect Tableau to MySQL target database
 
@@ -262,20 +310,20 @@ Build dashboards using analytics views
 
 ---
 
-## Future Improvements
+## 🔮 Future Improvements
 
 Possible enhancements:
 
-- Add Apache Airflow DAG for pipeline orchestration
-- Automate incremental loading scheduling
-- Add logging framework for monitoring pipeline runs
-- Deploy warehouse layer on cloud database services
-- Extend analytics views for advanced KPIs
+📌 Add Apache Airflow DAG orchestration  
+📌 Automate incremental loading scheduling  
+📌 Add logging framework for monitoring pipeline runs  
+📌 Deploy warehouse layer on cloud database services  
+📌 Extend analytics views for advanced KPIs
 
 ---
 
-## Author
+## 👨‍💻 Author
 
-Somit Prakash
+**Somit Prakash**
 
 End-to-End Data Engineering Pipeline Project
